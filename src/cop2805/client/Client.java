@@ -9,28 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
-    //main method
     public static void main(String[] args) {
-        Gui gui = new Gui();
+        new Gui();
     }
 
     public static List<Integer> request(String search) {
         List<Integer> list = new ArrayList<>();
         try {
             Socket socket = new Socket("localhost", 8080);
-            PrintWriter out = new PrintWriter(socket.getOutputStream());
-            out.println(search);
-            out.flush();
+            PrintWriter output = new PrintWriter(socket.getOutputStream());
+                output.println(search);
+                output.flush();
 
-            InputStreamReader input = new InputStreamReader(socket.getInputStream());
-            BufferedReader bufferedReader = new BufferedReader(input);
-            String response = bufferedReader.readLine();
+                InputStreamReader input = new InputStreamReader(socket.getInputStream());
+                BufferedReader bufferedReader = new BufferedReader(input);
+                String response = bufferedReader.readLine();
 
-            String[] results = response.substring(1, response.length() - 1).split(", ");
-            for(String result : results) {
-                list.add(Integer.parseInt(result));
-            }
-
+                String[] results = response.substring(1, response.length() - 1).split(", ");
+                for(String result : results) {
+                    if (result.length() > 0) {
+                        // doesn't attempt to parse string if the result is an empty string.
+                        list.add(Integer.parseInt(result));
+                    }
+                }
         } catch (IOException e) {
             e.printStackTrace();
         }

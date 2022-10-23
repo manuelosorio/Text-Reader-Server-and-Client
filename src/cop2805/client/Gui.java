@@ -6,14 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Gui extends JFrame implements ActionListener {
-    JFrame frame;
     JTextField searchField;
     public DefaultListModel<Integer> listModel;
     public JList<Integer> list;
     public Gui() {
         super("Hamlet Searcher");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1200, 800);
+        this.setSize(1000, 600);
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
         JPanel row = new JPanel();
@@ -52,8 +51,11 @@ public class Gui extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String search = this.searchField.getText();
         this.listModel.clear();
-        for (Integer result : Client.request(search)) {
-            this.listModel.addElement(result);
+        // doesn't send anything to client if string is empty.
+        if (search.length() > 0) {
+            for (Integer result : Client.request(search)) {
+                this.listModel.addElement(result);
+            }
         }
     }
 }

@@ -25,9 +25,9 @@ public class Server {
             System.exit(1);
         }
         while (!shutdown) {
-            Socket socket = null;
-            InputStreamReader input = null;
-            OutputStream output = null;
+            Socket socket;
+            InputStreamReader input;
+            OutputStream output;
             try {
                 socket = serverSocket.accept();
                 input = new InputStreamReader(socket.getInputStream());
