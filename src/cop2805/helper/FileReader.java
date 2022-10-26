@@ -19,11 +19,11 @@ public class FileReader {
     private void read() {
         this.list = new ArrayList<>();
         try(BufferedReader bufferedReader =
-            Files.newBufferedReader(this.filePath,Charset.defaultCharset())
+            Files.newBufferedReader(this.filePath, Charset.defaultCharset())
         ) {
             String line = bufferedReader.readLine();
             while (line != null) {
-                list.add(line.toUpperCase());
+                this.list.add(line);
                 line = bufferedReader.readLine();
             }
         } catch (IOException e) {
@@ -32,6 +32,6 @@ public class FileReader {
     }
 
     public List<String> getList() {
-        return list;
+        return this.list;
     }
 }

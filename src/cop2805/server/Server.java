@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import java.util.HashMap;
 import java.util.List;
 
 public class Server {
@@ -38,8 +40,8 @@ public class Server {
 
                 WorldSearcher worldSearcher = new WorldSearcher();
                 List<Integer> results = worldSearcher.search(request);
-                output.write(results.toString().getBytes());
-
+                HashMap<Integer, String> map = worldSearcher.getLines(results);
+                output.write(map.toString().getBytes());
                 socket.close();
                 shutdown = request.contains(SHUTDOWN_COMMAND);
             } catch (Exception e) {
