@@ -36,7 +36,7 @@ public class Server {
                 output = socket.getOutputStream();
 
                 BufferedReader bufferedReader = new BufferedReader(input);
-                String request = bufferedReader.readLine();
+                String request = bufferedReader.readLine().toUpperCase();
 
                 WorldSearcher worldSearcher = new WorldSearcher();
                 List<Integer> results = worldSearcher.search(request);

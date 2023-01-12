@@ -17,7 +17,7 @@ public class WorldSearcher {
     public List<Integer> search(String word) {
         List<Integer> linesNumbers = new ArrayList<>();
         for (int i = 0; i < this.list.size(); i++) {
-            if (this.list.get(i).toUpperCase().contains(word.toUpperCase())) {
+            if (this.list.get(i).toUpperCase().contains(word)) {
                 linesNumbers.add(i + 1);
             }
         }
